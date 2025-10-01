@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Office Inauguration - Hindustan Copper Limited</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #2a4a8c, #3a6acc);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            text-align: center;
+            position: relative;
+        }
+        
+        /* Fullscreen button */
+        .fullscreen-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50px;
+            cursor: pointer;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+        
+        .fullscreen-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+        
+        /* Pre-inauguration Screen */
+        .pre-inauguration {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .hcl-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-img {
+            width: 80px;
+            height: 80px;
+            background: transparent;
+            display: flex;
+        }
+        
+        .logo-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 5px;
+        }
+        
+        .logo-text {
+            text-align: left;
+        }
+        
+        .logo-text h2 {
+            font-size: 20px;
+            color: #ffcc00;
+        }
+        
+        .logo-text p {
+            font-size: 14px;
+            color: #aaddff;
+        }
+        
+        .date {
+            font-size: 20px;
+            color: #ffcc00;
+            font-weight: bold;
+        }
+        
+        .pre-title {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: glow 2s infinite alternate;
+        }
+        
+        .pre-subtitle {
+            font-size: 24px;
+            margin-bottom: 40px;
+            color: #aaddff;
+        }
+        
+        .theme-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 40px 0;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+        }
+        
+        .paper-side, .digital-side {
+            width: 45%;
+            padding: 20px;
+            border-radius: 15px;
+            position: relative;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .paper-side {
+            background: rgba(255, 255, 255, 0.15);
+            border-right: 3px dashed #ff6b6b;
+        }
+        
+        .digital-side {
+            background: rgba(255, 255, 255, 0.15);
+            border-left: 3px dashed #4facfe;
+        }
+        
+        .side-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #ffcc00;
+        }
+        
+        .transition-arrow {
+            font-size: 50px;
+            color: #4facfe;
+            animation: bounce 2s infinite;
+        }
+        
+        .inaugurate-btn-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .inaugurate-btn {
+            background: linear-gradient(to right, #ff8a00, #ff2070);
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            font-size: 22px;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(255, 138, 0, 0.4);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .inaugurate-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(255, 138, 0, 0.6);
+        }
+        
+        .inaugurate-btn:active {
+            transform: translateY(0);
+        }
+        
+        /* Paper airplanes animation */
+        .paper-airplane {
+            position: absolute;
+            font-size: 30px;
+            color: #ffffff;
+            opacity: 0.8;
+            z-index: 5;
+        }
+        
+        /* Digital icons animation */
+        .digital-icon {
+            position: absolute;
+            font-size: 24px;
+            color: #4facfe;
+            opacity: 0;
+            z-index: 5;
+        }
+        
+        /* Digital Transition Effect */
+        .transition-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            z-index: 100;
+        }
+        
+        .transition-panel {
+            position: absolute;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a1a3a, #1a3a7a);
+            transition: transform 1.5s ease-in-out;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 36px;
+            color: #4facfe;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+        }
+        
+        .transition-left {
+            left: 0;
+            transform-origin: left;
+            background: linear-gradient(135deg, #0a1a3a, #1a3a7a);
+            border-right: 3px solid #4facfe;
+        }
+        
+        .transition-right {
+            right: 0;
+            transform-origin: right;
+            background: linear-gradient(135deg, #1a3a7a, #0a1a3a);
+            border-left: 3px solid #4facfe;
+        }
+        
+        .transition-left.open {
+            transform: translateX(-100%);
+        }
+        
+        .transition-right.open {
+            transform: translateX(100%);
+        }
+        
+        .stage {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a1a3a, #1a3a7a);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            z-index: 5;
+        }
+        
+        .stage.visible {
+            opacity: 1;
+        }
+        
+        .title {
+            font-size: 60px;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: glow 2s infinite alternate;
+        }
+        
+        .subtitle {
+            font-size: 32px;
+            margin-bottom: 40px;
+            color: #aaddff;
+        }
+        
+        .message {
+            font-size: 36px;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px 50px;
+            border-radius: 15px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+            border-left: 5px solid #4facfe;
+        }
+        
+        .dignitaries {
+            font-size: 28px;
+            margin-top: 30px;
+            color: #ffcc00;
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            opacity: 0;
+            z-index: 20;
+        }
+        
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(79, 172, 254, 0.5);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(79, 172, 254, 0.8), 0 0 30px rgba(79, 172, 254, 0.6);
+            }
+        }
+        
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(10px);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes digital-float {
+            0% {
+                transform: translateY(100px) scale(0);
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-80px) scale(1);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .pre-title {
+                font-size: 36px;
+            }
+            
+            .pre-subtitle {
+                font-size: 20px;
+            }
+            
+            .theme-container {
+                flex-direction: column;
+            }
+            
+            .paper-side, .digital-side {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            
+            .transition-arrow {
+                transform: rotate(90deg);
+            }
+            
+            .title {
+                font-size: 40px;
+            }
+            
+            .message {
+                font-size: 24px;
+            }
+        }
+
+        /* ---------- ADD: stage layout + image border (paste into existing <style>) ---------- */
+.stage-inner {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 8px 16px;
+}
+
+/* left column (image) and right column (existing content) */
+.stage-left { flex: 0 0 320px; display:flex; flex-direction:column; align-items:center; }
+.stage-right { flex: 1; }
+
+/* Layered gradient border for the e-office image */
+.office-image-wrapper{
+  width: 300px;
+  height: 400px;
+  border-radius: 18px;
+  padding: 10px; /* inner spacing around image */
+  position: relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  box-shadow: 0 14px 36px rgba(0,0,0,0.45);
+  overflow: visible;
+}
+
+/* faint outer glow / ring */
+.office-image-wrapper::before{
+  content: "";
+  position: absolute;
+  inset: -8px;
+  z-index: -1;
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(79,172,254,0.16), rgba(255,138,0,0.12));
+  filter: blur(10px);
+  opacity: 0.95;
+}
+
+/* subtle deeper ring */
+.office-image-wrapper::after{
+  content: "";
+  position: absolute;
+  inset: -4px;
+  z-index: -2;
+  border-radius: 20px;
+  background: linear-gradient(90deg, rgba(15,43,87,0.9), rgba(35,79,136,0.9));
+  opacity: 0.08;
+}
+
+/* the actual image box */
+.office-image { width:100%; height:100%; border-radius:12px; overflow:hidden; display:block; }
+.office-image img { width:100%; height:100%; object-fit:cover; display:block; }
+
+/* small caption below image */
+.image-caption { margin-top:10px; font-size:13px; color: #bfe6ff; text-align:center; }
+
+/* responsive: stack on narrow screens */
+@media (max-width: 900px) {
+  .stage-inner { flex-direction: column-reverse; gap:18px; padding:12px; }
+  .stage-left { width: 75%; }
+  .office-image-wrapper { width: 260px; height: 260px; }
+}
+
+    </style>
+</head>
+<body>
+    <!-- Fullscreen Button -->
+    <!-- <button class="fullscreen-btn" id="fullscreenBtn">
+        <i class="fas fa-expand"></i> Full Screen
+    </button> -->
+
+    <div class="container">
+
+        <!-- add this as the first child of #transitionContainer -->
+<div class="pre-panel-animation" aria-hidden="true">
+  <div class="ripple" aria-hidden="true"></div>
+  <div class="beam" aria-hidden="true" style="left:30%;"></div>
+  <div class="beam" aria-hidden="true" style="right:30%; transform: rotate(-25deg);"></div>
+</div>
+
+
+        <!-- Pre-inauguration Screen -->
+        <div class="pre-inauguration">
+            <div class="header">
+                <div class="hcl-logo">
+                    <div class="logo-img">
+                        <!-- Replace this with your actual logo -->
+                        <img src="logo.png" alt="Hindustan Copper Limited">
+                    </div>
+                    <div class="logo-text">
+                        <h2>HINDUSTAN COPPER LIMITED</h2>
+                        <p>A Govt. of India Enterprise</p>
+                    </div>
+                </div>
+                <div class="date">7th October - Inauguration Day</div>
+            </div>
+            
+            <h1 class="pre-title">E-Office Digital Transformation</h1>
+            <h2 class="pre-subtitle">From Paper-Based to Digital Excellence</h2>
+            
+            <div class="theme-container">
+                <div class="paper-side">
+                    <h3 class="side-title">Paper Era</h3>
+                    <p>Manual documentation, physical storage, time-consuming processes, environmental impact</p>
+                    <div id="paper-airplanes-container"></div>
+                </div>
+                
+                <div class="transition-arrow">
+                    <i class="fas fa-long-arrow-alt-right"></i>
+                </div>
+                
+                <div class="digital-side">
+                    <h3 class="side-title">Digital Era</h3>
+                    <p>Automated workflows, cloud storage, efficient processes, eco-friendly solutions</p>
+                    <div id="digital-icons-container"></div>
+                </div>
+            </div>
+            
+            <div class="inaugurate-btn-container">
+                <button class="inaugurate-btn" id="inaugurateBtn">
+                    <i class="fas fa-play-circle"></i>
+                    Begin Inauguration Ceremony
+                </button>
+            </div>
+        </div>
+        
+        <!-- Digital Transition Effect -->
+        <div class="transition-container" id="transitionContainer">
+            <div class="transition-panel transition-left">E-OFFICE</div>
+            <div class="transition-panel transition-right">DIGITAL FUTURE</div>
+            
+            <div class="stage" id="stage">
+  <!-- keep your .hcl-logo if you want; it can remain here as-is -->
+  <div class="hcl-logo" style="position: absolute; top: 30px; left: 30px;">
+      <div class="logo-img"><img src="logo.png" alt="Hindustan Copper Limited"></div>
+      <div class="logo-text"><h2>HINDUSTAN COPPER LIMITED</h2><p>A Govt. of India Enterprise</p></div>
+  </div>
+
+  <!-- NEW: split stage content into left image + right text -->
+  <div class="stage-inner" role="region" aria-label="Inauguration stage">
+    <!-- LEFT: e-office image -->
+    <div class="stage-left" aria-hidden="false">
+      <div class="office-image-wrapper" aria-hidden="false">
+        <div class="office-image">
+          <!-- image file: place e-office.png in same folder as this HTML OR use absolute path -->
+          <img src="e-office.png" alt="E-Office visual - Digital Workplace">
+        </div>
+      </div>
+      <!-- <div class="image-caption">E-Office — A digital workplace solution</div> -->
+    </div>
+
+    <!-- RIGHT: your existing text (enhanced) -->
+    <div class="stage-right">
+      <h1 class="title">E-Office Inaugurated</h1>
+      <h2 class="subtitle">Embracing the secure, efficient &amp; sustainable digital workplace</h2>
+
+      <div class="message">
+        <strong>Inaugurated by:</strong> <span style="color: #ffcc00;">CMD</span><br>
+        <strong>In the presence of:</strong> <span style="color: #ffcc00;">Directors</span>
+      </div>
+
+      <div class="dignitaries">Transforming workflows for a sustainable future</div>
+    </div>
+  </div>
+</div>
+
+            
+            <div id="confetti-container"></div>
+        </div>
+    </div>
+
+    <!-- Audio elements for sounds -->
+    <audio id="clappingSound">
+        <source src="clap.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="fanfareSound">
+        <source src="win.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inaugurateBtn = document.getElementById('inaugurateBtn');
+            const transitionContainer = document.getElementById('transitionContainer');
+            const leftPanel = document.querySelector('.transition-left');
+            const rightPanel = document.querySelector('.transition-right');
+            const stage = document.getElementById('stage');
+            const clappingSound = document.getElementById('clappingSound');
+            const fanfareSound = document.getElementById('fanfareSound');
+            const paperContainer = document.getElementById('paper-airplanes-container');
+            const digitalContainer = document.getElementById('digital-icons-container');
+            const confettiContainer = document.getElementById('confetti-container');
+            const fullscreenBtn = document.getElementById('fullscreenBtn');
+            
+            // Create paper airplanes
+            function createPaperAirplane() {
+                const airplane = document.createElement('div');
+                airplane.className = 'paper-airplane';
+                airplane.innerHTML = '<i class="far fa-paper-plane"></i>';
+                
+                const startPos = Math.random() * 80 + 10; // 10% to 90%
+                const duration = Math.random() * 15 + 10; // 10s to 25s
+                const delay = Math.random() * 5; // 0s to 5s
+                
+                airplane.style.left = startPos + '%';
+                airplane.style.animation = `float ${duration}s linear ${delay}s infinite`;
+                
+                paperContainer.appendChild(airplane);
+            }
+            
+            // Create digital icons
+            function createDigitalIcon() {
+                const icons = ['fa-file-alt', 'fa-cloud', 'fa-database', 'fa-server', 'fa-laptop', 'fa-mobile-alt', 'fa-network-wired'];
+                const icon = document.createElement('div');
+                icon.className = 'digital-icon';
+                icon.innerHTML = `<i class="fas ${icons[Math.floor(Math.random() * icons.length)]}"></i>`;
+                
+                const startPos = Math.random() * 80 + 10; // 10% to 90%
+                const duration = Math.random() * 8 + 5; // 5s to 13s
+                const delay = Math.random() * 3; // 0s to 3s
+                
+                icon.style.left = startPos + '%';
+                icon.style.animation = `digital-float ${duration}s ease-in ${delay}s infinite`;
+                
+                digitalContainer.appendChild(icon);
+            }
+            
+            // Create multiple paper airplanes and digital icons
+            for (let i = 0; i < 8; i++) {
+                createPaperAirplane();
+                createDigitalIcon();
+            }
+            
+            // Create confetti
+            function createConfetti() {
+                const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const size = Math.random() * 10 + 5;
+                const left = Math.random() * 100;
+                const animationDuration = Math.random() * 3 + 2;
+                
+                confetti.style.backgroundColor = color;
+                confetti.style.width = size + 'px';
+                confetti.style.height = size + 'px';
+                confetti.style.left = left + '%';
+                confetti.style.animation = `confetti-fall ${animationDuration}s linear forwards`;
+                
+                confettiContainer.appendChild(confetti);
+                
+                // Remove confetti after animation completes
+                setTimeout(() => {
+                    confetti.remove();
+                }, animationDuration * 1000);
+            }
+            
+            // Inauguration button click handler
+            inaugurateBtn.addEventListener('click', function() {
+                // Hide pre-inauguration screen
+                document.querySelector('.pre-inauguration').style.display = 'none';
+                
+                // Show transition container
+                transitionContainer.style.display = 'block';
+                
+                // Play fanfare sound
+                fanfareSound.play().catch(e => {
+                    console.log("Audio play failed:", e);
+                });
+                
+                // Open panels after a delay
+                setTimeout(function() {
+                    leftPanel.classList.add('open');
+                    rightPanel.classList.add('open');
+                    
+                    // Show stage and play clapping sound
+                    setTimeout(function() {
+                        stage.classList.add('visible');
+                        
+                        // Play clapping sound - this should work now
+                        clappingSound.play().catch(e => {
+                            console.log("Clapping sound play failed:", e);
+                        });
+                        
+                        // Create confetti
+                        for (let i = 0; i < 100; i++) {
+                            setTimeout(() => {
+                                createConfetti();
+                            }, i * 100);
+                        }
+                    }, 1500);
+                }, 1000);
+            });
+            
+            // Fullscreen functionality
+            fullscreenBtn.addEventListener('click', function() {
+                if (!document.fullscreenElement) {
+                    document.documentElement.requestFullscreen().catch(err => {
+                        console.log(`Error attempting to enable fullscreen: ${err.message}`);
+                    });
+                    fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i> Exit Full Screen';
+                } else {
+                    if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                        fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i> Full Screen';
+                    }
+                }
+            });
+            
+            // Update fullscreen button text when exiting fullscreen
+            document.addEventListener('fullscreenchange', function() {
+                if (!document.fullscreenElement) {
+                    fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i> Full Screen';
+                }
+            });
+            
+            // Instructions for adding the actual logo
+            console.log("To add your actual HCL logo:");
+            console.log("1. Replace the placeholder div inside .logo-img with: <img src='hcl_logo.jpg' alt='Hindustan Copper Limited'>");
+            console.log("2. Make sure the hcl_logo.jpg file is in the same folder as this HTML file");
+        });
+    </script>
+</body>
+</html>
