@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Office Inauguration - Hindustan Copper Limited</title>
+    <title>e-Office Inauguration - Hindustan Copper Limited</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -292,6 +292,152 @@
         .stage.visible {
             opacity: 1;
         }
+
+/* ---------- DIGNITARY CARD: solid black interior + decorative golden rim ---------- */
+.dignitaries-block {
+  position: relative;
+  margin-top: 18px;
+  padding: 18px 22px;
+  border-radius: 14px;
+  background: #0b0b0d;                 /* KEEP SOLID BLACK-SLATE INTERIOR */
+  color: #dfeffb;
+  width: 100%;
+  max-width: 820px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 10px 30px rgba(2,8,15,0.7), inset 0 1px 0 rgba(255,255,255,0.02);
+  overflow: visible;
+  transition: opacity 600ms ease, transform 600ms ease;
+  border: 1px solid rgba(255,215,0,0.03); /* subtle inner golden outline */
+}
+
+/* decorative golden rim (blurred glow + gradient) */
+.dignitaries-block::before {
+  content: "";
+  position: absolute;
+  inset: -6px;                     /* thickness of the golden rim */
+  z-index: -2;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #b8860b 0%, #B87333, 45%, #ffcc33 100%);
+  filter: blur(6px);               /* soft glow; reduce or increase blur to taste */
+  opacity: 0.95;
+  pointer-events: none;
+}
+
+/* overlay that preserves a pure black interior while showing the rim */
+.dignitaries-block::after {
+  content: "";
+  position: absolute;
+  inset: 0;                         /* cover the same area as the card */
+  z-index: -1;
+  border-radius: 14px;
+  background: #0b0b0d;              /* EXACT same black-slate as the card interior */
+  pointer-events: none;
+}
+
+/* Keep reveal animation behavior */
+.stage.visible .dignitaries-block {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* 'Inaugurated by' label */
+.inaugurated-by .label {
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: #d6b76a; /* muted gold for labels */
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+/* main dignitary card */
+.main-dignitary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 14px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.02));
+  border: 1px solid rgba(255,215,0,0.04);
+}
+
+/* NAME: bright gold */
+.main-dignitary .name {
+  font-size: 20px;
+  font-weight: 800;
+  color: #FFD700; /* bright gold */
+  line-height: 1.05;
+  text-align: center;
+  text-shadow: 0 2px 10px rgba(255,215,0,0.08);
+}
+
+/* ROLE / designation: softer, paler gold */
+.main-dignitary .role {
+  font-size: 13px;
+  color: #FFDF80; /* softer/gentler gold */
+  text-align: center;
+  opacity: 0.95;
+}
+
+/* Present row label */
+.present-row .label {
+  display:block;
+  font-size: 12px;
+  color: #d6b76a;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.9px;
+}
+
+/* present-list layout */
+.present-list {
+  display: flex;
+  gap: 18px;
+  align-items: stretch;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+/* each present person */
+.present-item {
+  min-width: 0;
+  flex: 1 1 0;
+  text-align: center;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.02));
+  border: 1px solid rgba(255,215,0,0.03); /* tiny golden outline */
+}
+
+/* present name: gold (slightly smaller than main name) */
+.present-item .present-name {
+  display:block;
+  font-size: 15px;
+  font-weight: 700;
+  color: #FFD700; /* bright gold */
+  line-height: 1.1;
+}
+
+/* present role: softer gold */
+.present-item .present-role {
+  display:block;
+  margin-top: 6px;
+  font-size: 12px;
+  color: #FFDF80;
+}
+
+/* responsive: stack on narrow screens */
+@media (max-width: 780px) {
+  .present-list {
+    flex-direction: column;
+  }
+  .present-item { text-align: left; }
+  .main-dignitary .name { font-size: 18px; }
+}
+
+
         
         .title {
             font-size: 60px;
@@ -323,7 +469,7 @@
         .dignitaries {
             font-size: 28px;
             margin-top: 30px;
-            color: #ffcc00;
+            color: #aaddff;
         }
         
         .confetti {
@@ -450,7 +596,7 @@
 .stage-left { flex: 0 0 320px; display:flex; flex-direction:column; align-items:center; }
 .stage-right { flex: 1; }
 
-/* Layered gradient border for the e-office image */
+/* Layered gradient border for the e-Office image */
 .office-image-wrapper{
   width: 300px;
   height: 400px;
@@ -502,6 +648,42 @@
   .office-image-wrapper { width: 260px; height: 260px; }
 }
 
+/* Intro video overlay (paste into existing <style>) */
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: black;
+  cursor: pointer;
+}
+
+.intro-overlay video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* optional semi-transparent play hint */
+.intro-overlay .play-hint {
+  position: absolute;
+  z-index: 10000;
+  pointer-events: none;
+  font-size: 56px;
+  color: rgba(255,255,255,0.9);
+  text-shadow: 0 4px 16px rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(0,0,0,0.25);
+  padding: 12px 18px;
+  border-radius: 999px;
+}
+
+
     </style>
 </head>
 <body>
@@ -511,6 +693,19 @@
     </button> -->
 
     <div class="container">
+
+        <!-- INTRO VIDEO OVERLAY - MUST BE OUTSIDE .container -->
+<div id="introOverlay" class="intro-overlay" aria-label="Intro video. Click to play.">
+  <video id="introVideo" preload="auto" playsinline>
+    <source src="ino.mp4" type="video/mp4">
+    Your browser does not support the video element.
+  </video>
+  <!-- <div class="play-hint" aria-hidden="true">
+    <i class="fas fa-play-circle"></i>&nbsp;Click to start
+  </div> -->
+</div>
+
+
 
         <!-- add this as the first child of #transitionContainer -->
 <div class="pre-panel-animation" aria-hidden="true">
@@ -536,7 +731,7 @@
                 <div class="date">7th October - Inauguration Day</div>
             </div>
             
-            <h1 class="pre-title">E-Office Digital Transformation</h1>
+            <h1 class="pre-title">e-Office Digital Transformation</h1>
             <h2 class="pre-subtitle">From Paper-Based to Digital Excellence</h2>
             
             <div class="theme-container">
@@ -557,17 +752,15 @@
                 </div>
             </div>
             
-            <div class="inaugurate-btn-container">
+          <div class="inaugurate-btn-container">
                 <button class="inaugurate-btn" id="inaugurateBtn">
-                    <i class="fas fa-play-circle"></i>
-                    Begin Inauguration Ceremony
                 </button>
             </div>
         </div>
         
         <!-- Digital Transition Effect -->
         <div class="transition-container" id="transitionContainer">
-            <div class="transition-panel transition-left">E-OFFICE</div>
+            <div class="transition-panel transition-left">e-Office</div>
             <div class="transition-panel transition-right">DIGITAL FUTURE</div>
             
             <div class="stage" id="stage">
@@ -579,26 +772,57 @@
 
   <!-- NEW: split stage content into left image + right text -->
   <div class="stage-inner" role="region" aria-label="Inauguration stage">
-    <!-- LEFT: e-office image -->
+    <!-- LEFT: e-Office image -->
     <div class="stage-left" aria-hidden="false">
       <div class="office-image-wrapper" aria-hidden="false">
         <div class="office-image">
-          <!-- image file: place e-office.png in same folder as this HTML OR use absolute path -->
-          <img src="e-office.png" alt="E-Office visual - Digital Workplace">
+          <!-- image file: place e-Office.png in same folder as this HTML OR use absolute path -->
+          <img src="e-Office.png" alt="e-Office visual - Digital Workplace">
         </div>
       </div>
-      <!-- <div class="image-caption">E-Office — A digital workplace solution</div> -->
+      <!-- <div class="image-caption">e-Office — A digital workplace solution</div> -->
     </div>
 
     <!-- RIGHT: your existing text (enhanced) -->
     <div class="stage-right">
-      <h1 class="title">E-Office Inaugurated</h1>
+      <h1 class="title">e-Office Inaugurated</h1>
       <h2 class="subtitle">Embracing the secure, efficient &amp; sustainable digital workplace</h2>
 
-      <!-- <div class="message">
-        <strong>Inaugurated by:</strong> <span style="color: #ffcc00;">CMD</span><br>
-        <strong>In the presence of:</strong> <span style="color: #ffcc00;">Directors</span>
-      </div> -->
+      <!-- DIGNITARIES: replace the old message/dignitaries block with this -->
+<div class="dignitaries-block" role="region" aria-label="Dignitaries present at the inauguration">
+
+  <!-- Inaugurated By (prominent) -->
+  <div class="inaugurated-by" aria-live="polite">
+    <div class="label">Inaugurated by</div>
+    <div class="main-dignitary" role="listitem">
+      <div class="name">Shri Sanjiv Kumar Singh</div>
+      <div class="role">Chairman and Managing Director</div>
+    </div>
+  </div>
+
+  <!-- Present in the program - single row (responsive) -->
+  <div class="present-row" aria-label="In the presence of">
+    <div class="label">In the presence of</div>
+    <div class="present-list" role="list" aria-hidden="false">
+      <div class="present-item" role="listitem">
+        <span class="present-name">Dr. Sanjeev Kumar Sinha</span>
+        <span class="present-role">Director (Operations) &amp; Addl. Charge Director (Mining)</span>
+      </div>
+
+      <div class="present-item" role="listitem">
+        <span class="present-name">Shri RVN Vishweshwar</span>
+        <span class="present-role">Director (Finance)</span>
+      </div>
+
+      <div class="present-item" role="listitem">
+        <span class="present-name">Shri Harsimran Singh</span>
+        <span class="present-role">CVO</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
 
       <div class="dignitaries">Transforming workflows for a sustainable future</div>
     </div>
@@ -618,149 +842,209 @@
         <source src="win.mp3" type="audio/mpeg">
     </audio>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const inaugurateBtn = document.getElementById('inaugurateBtn');
-            const transitionContainer = document.getElementById('transitionContainer');
-            const leftPanel = document.querySelector('.transition-left');
-            const rightPanel = document.querySelector('.transition-right');
-            const stage = document.getElementById('stage');
-            const clappingSound = document.getElementById('clappingSound');
-            const fanfareSound = document.getElementById('fanfareSound');
-            const paperContainer = document.getElementById('paper-airplanes-container');
-            const digitalContainer = document.getElementById('digital-icons-container');
-            const confettiContainer = document.getElementById('confetti-container');
-            const fullscreenBtn = document.getElementById('fullscreenBtn');
-            
-            // Create paper airplanes
-            function createPaperAirplane() {
-                const airplane = document.createElement('div');
-                airplane.className = 'paper-airplane';
-                airplane.innerHTML = '<i class="far fa-paper-plane"></i>';
-                
-                const startPos = Math.random() * 80 + 10; // 10% to 90%
-                const duration = Math.random() * 15 + 10; // 10s to 25s
-                const delay = Math.random() * 5; // 0s to 5s
-                
-                airplane.style.left = startPos + '%';
-                airplane.style.animation = `float ${duration}s linear ${delay}s infinite`;
-                
-                paperContainer.appendChild(airplane);
-            }
-            
-            // Create digital icons
-            function createDigitalIcon() {
-                const icons = ['fa-file-alt', 'fa-cloud', 'fa-database', 'fa-server', 'fa-laptop', 'fa-mobile-alt', 'fa-network-wired'];
-                const icon = document.createElement('div');
-                icon.className = 'digital-icon';
-                icon.innerHTML = `<i class="fas ${icons[Math.floor(Math.random() * icons.length)]}"></i>`;
-                
-                const startPos = Math.random() * 80 + 10; // 10% to 90%
-                const duration = Math.random() * 8 + 5; // 5s to 13s
-                const delay = Math.random() * 3; // 0s to 3s
-                
-                icon.style.left = startPos + '%';
-                icon.style.animation = `digital-float ${duration}s ease-in ${delay}s infinite`;
-                
-                digitalContainer.appendChild(icon);
-            }
-            
-            // Create multiple paper airplanes and digital icons
-            for (let i = 0; i < 8; i++) {
-                createPaperAirplane();
-                createDigitalIcon();
-            }
-            
-            // Create confetti
-            function createConfetti() {
-                const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                
-                const color = colors[Math.floor(Math.random() * colors.length)];
-                const size = Math.random() * 10 + 5;
-                const left = Math.random() * 100;
-                const animationDuration = Math.random() * 3 + 2;
-                
-                confetti.style.backgroundColor = color;
-                confetti.style.width = size + 'px';
-                confetti.style.height = size + 'px';
-                confetti.style.left = left + '%';
-                confetti.style.animation = `confetti-fall ${animationDuration}s linear forwards`;
-                
-                confettiContainer.appendChild(confetti);
-                
-                // Remove confetti after animation completes
-                setTimeout(() => {
-                    confetti.remove();
-                }, animationDuration * 1000);
-            }
-            
-            // Inauguration button click handler
-            inaugurateBtn.addEventListener('click', function() {
-                // Hide pre-inauguration screen
-                document.querySelector('.pre-inauguration').style.display = 'none';
-                
-                // Show transition container
-                transitionContainer.style.display = 'block';
-                
-                // Play fanfare sound
-                fanfareSound.play().catch(e => {
-                    console.log("Audio play failed:", e);
-                });
-                
-                // Open panels after a delay
-                setTimeout(function() {
-                    leftPanel.classList.add('open');
-                    rightPanel.classList.add('open');
-                    
-                    // Show stage and play clapping sound
-                    setTimeout(function() {
-                        stage.classList.add('visible');
-                        
-                        // Play clapping sound - this should work now
-                        clappingSound.play().catch(e => {
-                            console.log("Clapping sound play failed:", e);
-                        });
-                        
-                        // Create confetti
-                        for (let i = 0; i < 100; i++) {
-                            setTimeout(() => {
-                                createConfetti();
-                            }, i * 100);
-                        }
-                    }, 1500);
-                }, 1000);
-            });
-            
-            // Fullscreen functionality
-            fullscreenBtn.addEventListener('click', function() {
-                if (!document.fullscreenElement) {
-                    document.documentElement.requestFullscreen().catch(err => {
-                        console.log(`Error attempting to enable fullscreen: ${err.message}`);
-                    });
-                    fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i> Exit Full Screen';
-                } else {
-                    if (document.exitFullscreen) {
-                        document.exitFullscreen();
-                        fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i> Full Screen';
-                    }
-                }
-            });
-            
-            // Update fullscreen button text when exiting fullscreen
-            document.addEventListener('fullscreenchange', function() {
-                if (!document.fullscreenElement) {
-                    fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i> Full Screen';
-                }
-            });
-            
-            // Instructions for adding the actual logo
-            console.log("To add your actual HCL logo:");
-            console.log("1. Replace the placeholder div inside .logo-img with: <img src='hcl_logo.jpg' alt='Hindustan Copper Limited'>");
-            console.log("2. Make sure the hcl_logo.jpg file is in the same folder as this HTML file");
-        });
-    </script>
-</body>
+   <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const inaugurateBtn = document.getElementById('inaugurateBtn');
+    const transitionContainer = document.getElementById('transitionContainer');
+    const leftPanel = document.querySelector('.transition-left');
+    const rightPanel = document.querySelector('.transition-right');
+    const stage = document.getElementById('stage');
+    const clappingSound = document.getElementById('clappingSound');
+    const fanfareSound = document.getElementById('fanfareSound');
+    const paperContainer = document.getElementById('paper-airplanes-container');
+    const digitalContainer = document.getElementById('digital-icons-container');
+    const confettiContainer = document.getElementById('confetti-container');
+    const fullscreenBtn = document.getElementById('fullscreenBtn');
 
+    // hide only the pre-inauguration panel until intro video finishes
+    const preInaug = document.querySelector('.pre-inauguration');
+    if (preInaug) preInaug.style.visibility = 'hidden';
+
+    // --- INTRO VIDEO HANDLER ---
+    const introOverlay = document.getElementById('introOverlay');
+    const introVideo = document.getElementById('introVideo');
+
+    if (introOverlay && introVideo) {
+      // Ensure overlay is visible (safety)
+      introOverlay.style.display = 'flex';
+
+      const onOverlayClick = (e) => {
+        // prevent double clicks
+        introOverlay.removeEventListener('click', onOverlayClick);
+
+        // attempt to play (user click should allow audio)
+        introVideo.play().catch(err => {
+          console.warn('Video playback failed:', err);
+          // if play fails, still reveal the UI so user can continue
+          triggerReveal();
+        });
+
+        // optional: hide the play hint once started
+        const hint = introOverlay.querySelector('.play-hint');
+        if (hint) hint.style.display = 'none';
+      };
+
+      introOverlay.addEventListener('click', onOverlayClick);
+
+      // handle ended
+      introVideo.addEventListener('ended', () => {
+        triggerReveal();
+      });
+
+      // if user scrubs very near the end and pauses, treat as ended
+      introVideo.addEventListener('pause', () => {
+        if (introVideo.duration && introVideo.currentTime >= introVideo.duration - 0.25) {
+          introVideo.dispatchEvent(new Event('ended'));
+        }
+      });
+
+      // fallback: if video metadata fails and duration is NaN, allow user to double-click overlay to force reveal
+      introOverlay.addEventListener('dblclick', () => {
+        triggerReveal();
+      });
+    } else {
+      // If overlay or video missing, just reveal UI immediately
+      if (preInaug) preInaug.style.visibility = 'visible';
+    }
+
+    function triggerReveal() {
+      // hide overlay
+      if (introOverlay) introOverlay.style.display = 'none';
+
+      // reveal pre-inauguration content
+      if (preInaug) preInaug.style.visibility = 'visible';
+
+      // auto trigger the Begin Inauguration button after 3 seconds
+      setTimeout(() => {
+        if (inaugurateBtn) inaugurateBtn.click();
+      }, 3000);
+    }
+
+    // Create paper airplanes
+    function createPaperAirplane() {
+        if (!paperContainer) return;
+        const airplane = document.createElement('div');
+        airplane.className = 'paper-airplane';
+        airplane.innerHTML = '<i class="far fa-paper-plane"></i>';
+        
+        const startPos = Math.random() * 80 + 10; // 10% to 90%
+        const duration = Math.random() * 15 + 10; // 10s to 25s
+        const delay = Math.random() * 5; // 0s to 5s
+        
+        airplane.style.left = startPos + '%';
+        airplane.style.animation = `float ${duration}s linear ${delay}s infinite`;
+        
+        paperContainer.appendChild(airplane);
+    }
+    
+    // Create digital icons
+    function createDigitalIcon() {
+        if (!digitalContainer) return;
+        const icons = ['fa-file-alt', 'fa-cloud', 'fa-database', 'fa-server', 'fa-laptop', 'fa-mobile-alt', 'fa-network-wired'];
+        const icon = document.createElement('div');
+        icon.className = 'digital-icon';
+        icon.innerHTML = `<i class="fas ${icons[Math.floor(Math.random() * icons.length)]}"></i>`;
+        
+        const startPos = Math.random() * 80 + 10; // 10% to 90%
+        const duration = Math.random() * 8 + 5; // 5s to 13s
+        const delay = Math.random() * 3; // 0s to 3s
+        
+        icon.style.left = startPos + '%';
+        icon.style.animation = `digital-float ${duration}s ease-in ${delay}s infinite`;
+        
+        digitalContainer.appendChild(icon);
+    }
+    
+    for (let i = 0; i < 8; i++) {
+        createPaperAirplane();
+        createDigitalIcon();
+    }
+    
+    // Create confetti
+    function createConfetti() {
+        if (!confettiContainer) return;
+        const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        const size = Math.random() * 10 + 5;
+        const left = Math.random() * 100;
+        const animationDuration = Math.random() * 3 + 2;
+        
+        confetti.style.backgroundColor = color;
+        confetti.style.width = size + 'px';
+        confetti.style.height = size + 'px';
+        confetti.style.left = left + '%';
+        confetti.style.animation = `confetti-fall ${animationDuration}s linear forwards`;
+        
+        confettiContainer.appendChild(confetti);
+        
+        setTimeout(() => {
+            confetti.remove();
+        }, animationDuration * 1000);
+    }
+    
+    // Inauguration button click handler
+    if (inaugurateBtn) {
+      inaugurateBtn.addEventListener('click', function() {
+          // Hide pre-inauguration screen
+          const pre = document.querySelector('.pre-inauguration');
+          if (pre) pre.style.display = 'none';
+          
+          // Show transition container
+          if (transitionContainer) transitionContainer.style.display = 'block';
+          
+          // Play fanfare sound
+          if (fanfareSound) fanfareSound.play().catch(e => { console.log("Audio play failed:", e); });
+          
+          // Open panels after a delay
+          setTimeout(function() {
+              if (leftPanel) leftPanel.classList.add('open');
+              if (rightPanel) rightPanel.classList.add('open');
+              
+              // Show stage and play clapping sound
+              setTimeout(function() {
+                  if (stage) stage.classList.add('visible');
+                  
+                  if (clappingSound) clappingSound.play().catch(e => { console.log("Clapping sound play failed:", e); });
+                  
+                  for (let i = 0; i < 100; i++) {
+                      setTimeout(() => {
+                          createConfetti();
+                      }, i * 100);
+                  }
+              }, 1500);
+          }, 1000);
+      });
+    }
+
+    // Safe fullscreen functionality (only if button exists)
+    if (fullscreenBtn) {
+      fullscreenBtn.addEventListener('click', function() {
+          if (!document.fullscreenElement) {
+              document.documentElement.requestFullscreen().catch(err => {
+                  console.log(`Error attempting to enable fullscreen: ${err.message}`);
+              });
+              fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i> Exit Full Screen';
+          } else {
+              if (document.exitFullscreen) {
+                  document.exitFullscreen();
+                  fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i> Full Screen';
+              }
+          }
+      });
+
+      document.addEventListener('fullscreenchange', function() {
+          if (!document.fullscreenElement) {
+              fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i> Full Screen';
+          }
+      });
+    }
+
+    console.log("To add your actual HCL logo: replace placeholder in .logo-img with <img src='hcl_logo.jpg' ...>");
+});
+</script>
+
+</body>
 </html>
